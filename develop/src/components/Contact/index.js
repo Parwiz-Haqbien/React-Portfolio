@@ -60,6 +60,7 @@ function ContactInfo() {
 							defaultValue={name}
 							onBlur={leftBlank}
 							name="Name"
+							placeholder="Type here"
 						/>
 					</div>
 					<div>
@@ -70,6 +71,7 @@ function ContactInfo() {
 							defaultValue={email}
 							name="email"
 							onBlur={handleEmail}
+							placeholder="Type here"
 						/>
 					</div>
 					<div>

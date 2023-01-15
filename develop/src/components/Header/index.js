@@ -8,7 +8,7 @@ function Header(props) {
 	return (
 		<header>
 			<div>
-				<h2> Parwiz's React Portfolio</h2>
+				<h2> Parwiz Haqbien</h2>
 			</div>
 			<div>
 				<Navigation

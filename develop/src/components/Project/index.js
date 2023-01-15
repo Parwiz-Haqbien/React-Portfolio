@@ -1,112 +1,56 @@
-import React from 'react';
-import Project from '../Project';
+import React, { useState } from "react";
+import Card from "react-bootstrap/Card";
 
-function Portfolio() {
-	const projects = [
-		{
-			name: 'WordUp',
-			description:
-				'WordUp translation application to provide regional language translations for a given word or phrase',
-			image: 'wordup.png',
-			technologies: [
-				'HTML/CSS',
-				'JavaScript',],
-			github: 'https://github.com/Parwiz-Haqbien/Dictionary',
-		},
-		{
-			name: 'Password-Generator',
-			description:
-				'Password generator that generates a password based on the users chosen criteria.',
-			image: 'password-gen.png',
-			technologies: [
-				'HTML/CSS',
-				'JavaScript',			],
-			github: 'https://github.com/Parwiz-Haqbien/Password-Generator',
-			deployed: 'https://parwiz-haqbien.github.io/Password-Generator/',
-		},
-		{
-			name: 'Junior-Jobs',
-			description:
-				'A key role in your journey to becoming a full-stack web developer, where you can apply to entry level jobs',
-			image: 'Junior-jobs.png',
-			technologies: ['HTML/CSS', 'JavaScript', 'handlebars', 'mysql2'],
-			github: 'https://github.com/Parwiz-Haqbien/Junior-Jobs',
-		},
-		{
-			name: 'Note-taker',
-			description:
-				'A note-taking application that uses Express.js and a JSON file to store and retrieve notes. You can create, view notes with it.',
-			image: 'note-taker.png',
-			technologies: [
-				'JavaScript',
-                'HTML/CSS',
-				'Express',
-			],
-			github: 'https://github.com/Parwiz-Haqbien/note-taker',
-			deployed: 'https://note-taker1.herokuapp.com/',
-		},
-		{
-			name: 'Tech-Blog',
-			description:
-				'Allows multiple users to create an account and publish blog posts. Users can also edit and delete their own posts, as well as comment on posts from other users.',
-			image: 'tech-blog.png',
-			technologies: ['HTML/CSS', 'JavaScript', 'express', 'express', 'handlebars'],
-			github: 'https://github.com/Parwiz-Haqbien/Tech-Blog',
-			deployed: 'https://herkuo-techblog.herokuapp.com/',
-		},
-		{
-			name: 'Work-Day-Scheduler',
-			description:
-				'A calendar application that allows users to enter events into time blocks.',
-			image: 'workDay.png',
-			technologies: ['HTML/CSS', 'JavaScript'],
-			github: 'https://github.com/Parwiz-Haqbien/Work-Day-Scheduler',
-			deployed: 'https://parwiz-haqbien.github.io/Work-Day-Scheduler/',
-		},
-		{
-			name: 'PWA-Text-Editor',
-			description:
-				' text editor app utilizes webpack and service workers to provide a seamless experience. Install it on your device and start taking notes on the go!.',
-			image: 'Pwa-text-editor.png',
-			technologies: ['HTML/CSS', 'JavaScript', 'webpack'],
-			github: 'https://github.com/Parwiz-Haqbien/PWA-Text-Editor',
-			deployed: 'https://pwa-text-editor12.herokuapp.com//',
-		},
-	];
+function Project(props) {
+	// This imports the information for the current project sent down.
+	const currentProject = useState(props)[0].projects;
+
+	const name = currentProject.name;
+	const description = currentProject.description;
+	const image = currentProject.image;
+	const techs = currentProject.technologies;
+	const appLink = currentProject.deployed;
+	const gitLink = currentProject.github;
+
+	// This function parses the information from the array and creates a list.
+	function getTechs(techArray) {
+		let techList = "";
+
+		for (var i = 0; i < techArray.length; i++) {
+			if (i === techArray.length - 1) {
+				techList += techArray[i];
+			} else {
+				techList += techArray[i] + ", ";
+			}
+		}
+
+		return techList;
+	}
 
 	return (
-		<section>
+		<Card style={{ width: "18rem" }}>
+			<Card.Img
+				variant="top"
+				src={require(`../../assets/images/${image}`)}
+				className="card-image"
+			/>
 			<div className="center">
-				<h1 className="page-header">My Portfolio</h1>
+				<Card.Body>
+					<Card.Title className="card-title">{name}</Card.Title>
+					<Card.Text className="card-text">{description}</Card.Text>
+					<Card.Subtitle className="card-subtitle">Technology Used</Card.Subtitle>
+					<Card.Text className="card-techs">{getTechs(techs)}</Card.Text>
+					<Card.Link href={appLink} target="_blank" className="card-link">
+						{name} App
+					</Card.Link>
+					<br></br>
+					<Card.Link href={gitLink} target="_blank" className="card-link">
+						{name} Github
+					</Card.Link>
+				</Card.Body>
 			</div>
-			<div>
-				<ul className="flex-row mobile-row">
-					<li className="padding">
-						<Project projects={projects[0]}></Project>
-					</li>
-					<li className="padding">
-						<Project projects={projects[1]}></Project>
-					</li>
-				</ul>
-				<ul className="flex-row mobile-row">
-					<li className="padding">
-						<Project projects={projects[2]}></Project>
-					</li>
-					<li className="padding">
-						<Project projects={projects[3]}></Project>
-					</li>
-				</ul>
-				<ul className="flex-row mobile-row">
-					<li className="padding">
-						<Project projects={projects[4]}></Project>
-					</li>
-					<li className="padding">
-						<Project projects={projects[5]}></Project>
-					</li>
-				</ul>
-			</div>
-		</section>
+		</Card>
 	);
 }
 
-export default Portfolio;
+export default Project;
