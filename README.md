@@ -35,5 +35,3 @@ npm start
 
 ## Contribution
 Made by Parwiz Haqbien
-
-Page url()
